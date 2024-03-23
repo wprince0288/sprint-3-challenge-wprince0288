@@ -62,28 +62,29 @@
         this.ints = [...args];
       }
       getAll() {
-        return this.ints;
+        return this.ints
       }
       getEvens() {
-        return this.ints.filter(num => num % 2 === 0);
+        return this.ints.filter(num => num % 2 === 0)
       }
       getNegatives() {
         return this.ints.filter(num => num < 0)
       }
       getAllSquared() {
-        return this.ints
+        return this.ints.map(num => num ** 2)
       }
       pop() {
-        return this.int
+        return this.ints.pop()
       }
-      push() {
-        return this.int
+      push(ints) {
+        this.ints()
+        return this.push(ints)
       }
-      getEveryNth() {
-        return this.int
+      getEveryNth(n) {
+        return this.ints.filter()
       }
       getAllReversed() {
-        return this.int
+        return this.ints
       }
     }
 
