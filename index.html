@@ -18,7 +18,6 @@
     .widget p {
       font-style: italic;
     }
-
   </style>
 </head>
 
@@ -59,8 +58,35 @@
       // ❗ WARNING: except for `getAllReversed`, methods must respect the order of the integers
       // ❗ WARNING: note that none of the methods actually mutate the `ints` property
 
-      
+      constructor(...args) {
+        this.ints = [...args];
+      }
+      getAll() {
+        return this.ints;
+      }
+      getEvens() {
+        return this.ints.filter(num => num % 2 === 0);
+      }
+      getNegatives() {
+        return this.ints.filter(num => num < 0)
+      }
+      getAllSquared() {
+        return this.ints
+      }
+      pop() {
+        return this.int
+      }
+      push() {
+        return this.int
+      }
+      getEveryNth() {
+        return this.int
+      }
+      getAllReversed() {
+        return this.int
+      }
     }
+
 
     // 👉 CHALLENGE 2 NerfGun
     class NerfGun {
