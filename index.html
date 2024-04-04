@@ -76,15 +76,15 @@
       pop() {
         return this.ints.pop()
       }
-      push(ints) {
-        this.ints()
-        return this.push(ints)
+      push(int) {
+        this.ints.push(int)
+        return this.ints
       }
       getEveryNth(n) {
-        return this.ints.filter()
+        this.ints.filter((idx) => idx % n === 0)
       }
       getAllReversed() {
-        return this.ints
+        return this.ints.slice().reverse()
       }
     }
 
@@ -105,6 +105,42 @@
       //      * When disengaging the safety, return "Safety disabled!"
       // 🌟 HINT: instances need to keep track of their maximum capacity as well as their current capacity
 
+      constructor(totalProjectiles) {
+        this.maxCapacity = totalProjectiles;
+        this.currentCapacity = totalProjectiles;
+        this.safetyOn = true;
+      }
+
+      shoot() {
+        if (this.currentCapacity > 0 && !this.safetyOn) {
+          this.currentCapacity--;
+          return "Bang!"
+        } else {
+          return "Click!"
+        }
+      }
+
+      reload(qty) {
+
+        if (typeof qty !== 'number' || qty <= 0) {
+          return "Error reloading!"
+        }
+        this.currentCapacity += qty;
+        if (this.currentCapacity = this.maxCapacity) {
+          this.currentCapacity > this.maxCapacity;
+        }
+        return `${this.currentCapacity} projectiles left!`;
+      }
+
+      toggleSafety() {
+        this.safetyOn = !this.safetyOn;
+        if (this.safetyOn) {
+          return "Safety enabled!"
+        }
+        else {
+          return "Safety disabled!"
+        }
+      }
     }
 
     // 👉 CHALLENGE 3 EBook
@@ -124,7 +160,37 @@
       // 🌟 HINT: remember about the `slice` method which strings and arrays have
       // ❗ Feel free to implement `back`, although this is not required nor graded
 
+      constructor(str, charsOnPage) {
+        this.str = str;
+        this.charsOnPage = charsOnPage;
+        this.curPage = 0;
+      }
+
+      next() {
+        const start = this.curPage * this.charsOnPage;
+        const end = start + this.charsOnPage;
+        const page = this.str.slice(start, end);
+        if (page.length > 0) {
+          this.curPage++;
+          return page;
+        } else {
+          return null;
+        }
+      }
+      back() {
+        if (this.curPage > 0) {
+          this.curPage--;
+          const start = this.curPage * this.charsOnPage;
+          const end = start + this.charsOnPage;
+          return this.text.slice(start, end);
+        } else {
+          return null;
+        }
+      }
     }
+
+
+
 
     // 👉 CHALLENGE 4 AntFarm
     class AntFarm {
@@ -159,7 +225,34 @@
       // 👉 HINT: if you are not feeling confident with map and filter, solve the problem with for loops,
       //      and with the piece of mind of all tests passing, refactor to use map/filter
 
+      constructor(...antsName) {
+        this.ants = antsName.map(name => ({ name, health: 100 }));
+      }
+
+      work() {
+        if (this.ants.length === 0) {
+          return "No ants here. Did you work them to death?";
+        }
+        this.ants.forEach(ant => {
+          ant.health -= 20;
+          if (ant.health <= 0) {
+            this.ants = this.ants.filter(a => a !== ant);
+          }
+        });
+        return `${this.ants.length} ants starting to work!`;
+      }
+
+      feed(antsName) {
+        const ant = this.ants.find(ant => ant.name === antsName)
+        if (ant) {
+          ant.health += 15;
+          return "Yum!";
+        } else {
+          return `${antsName} not found!`
+        }
+      }
     }
+
 
     // 🧪 TESTS, do not make any changes below this line ===================
     // 🧪 TESTS, do not make any changes below this line ===================
