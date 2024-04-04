@@ -81,7 +81,7 @@
         return this.ints
       }
       getEveryNth(n) {
-        this.ints.filter((idx) => idx % n === 0)
+        return this.ints.filter((_, idx) => idx % n === 0);
       }
       getAllReversed() {
         return this.ints.slice().reverse()
@@ -177,20 +177,7 @@
           return null;
         }
       }
-      back() {
-        if (this.curPage > 0) {
-          this.curPage--;
-          const start = this.curPage * this.charsOnPage;
-          const end = start + this.charsOnPage;
-          return this.text.slice(start, end);
-        } else {
-          return null;
-        }
-      }
     }
-
-
-
 
     // 👉 CHALLENGE 4 AntFarm
     class AntFarm {
@@ -239,10 +226,10 @@
             this.ants = this.ants.filter(a => a !== ant);
           }
         });
-        return `${this.ants.length} ants starting to work!`;
+        return `${this.ants.length} ants starting work!`;
       }
 
-      feed(antsName) {
+      feed(antName) {
         const ant = this.ants.find(ant => ant.name === antsName)
         if (ant) {
           ant.health += 15;
