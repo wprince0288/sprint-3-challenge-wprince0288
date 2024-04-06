@@ -125,9 +125,11 @@
         if (typeof qty !== 'number' || qty <= 0) {
           return "Error reloading!"
         }
-        this.currentCapacity += qty;
-        if (this.currentCapacity = this.maxCapacity) {
-          this.currentCapacity > this.maxCapacity;
+
+        if (this.currentCapacity + qty > this.maxCapacity) {
+          this.currentCapacity = this.maxCapacity
+        } else {
+          this.currentCapacity += qty
         }
         return `${this.currentCapacity} projectiles left!`;
       }
@@ -220,13 +222,15 @@
         if (this.ants.length === 0) {
           return "No ants here. Did you work them to death?";
         }
-        this.ants.forEach(ant => {
-          ant.health -= 20;
+        const initialAntCount = this.ants.length;
+
+        this.ants.map(ant => {
+          ant.health -= 20 
           if (ant.health <= 0) {
             this.ants = this.ants.filter(a => a !== ant);
           }
         });
-        return `${this.ants.length} ants starting work!`;
+        return `${initialAntCount} ants starting work!`;
       }
 
       feed(antName) {
